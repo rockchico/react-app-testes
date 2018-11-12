@@ -1,105 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react'
 import {
-  Route,
-  Link,
   BrowserRouter as Router,
-  Redirect,
-  withRouter
-} from 'react-router-dom';
+  Route,
+  Link
+} from 'react-router-dom'
 
-const Public = () => (
-  <div> This is a public page </div>
+
+const Home = () => (
+  <div>
+    <h2>Home Page</h2>
+  </div>
+)
+
+const Contact = () => (
+  <div>
+    <h2>Contact Page</h2>
+  </div>
+)
+
+const CustomLink = ({ children, to, exact }) => (
+  <Route path={to} exact={exact} children={({ match }) => (
+    <div className={match ? 'active' : ''}>
+      {match ? '> ' : ''}
+      <Link to={to}>
+        {children}
+      </Link>
+    </div>
+  )}/>
 );
 
-const Private = () => (
-  <div> This is a private page </div>
-);
-
-class Login extends React.Component {
-  state = {
-    redirectToPreviousRoute: false
-  };
-
-  login = () => {
-    AuthService.authenticate(() => {
-      this.setState({ redirectToPreviousRoute: true });
-    });
-  };
-
-  render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
-    const { redirectToPreviousRoute } = this.state;
-
-    if (redirectToPreviousRoute) {
-      return <Redirect to={from} />;
-    }
-
-    return (
-      <div>
-        <p>You must log in to view the page at {from.pathname}</p>
-        <button onClick={this.login}>Log in</button>
-      </div>
-    );
-  }
-}
-
-
-const AuthService = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  logout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
-}
-
-const SecretRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    AuthService.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }} />
-  )} />
-);
-
-const AuthStatus = withRouter(({ history }) => (
-  AuthService.isAuthenticated ? (
-    <p>
-      Welcome! <button onClick={() => {
-        AuthService.logout(() => history.push('/'))
-      }}>Sign out</button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  )
-));
-
-
-
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <Router>
-        <div style={{width: 1000, margin: '0 auto'}}>
-          <ul>
-            <li><Link to='/public'> Public </Link></li>
-            <li><Link to='/private'> Private </Link></li>
-          </ul>
+        <div>
+            <CustomLink exact={true} to="/">
+              Home <b>Sim</b>
+            </CustomLink>
+            <CustomLink to="/contact">
+              Contact <b>Nao</b>
+            </CustomLink>
 
           <hr/>
 
-          <Route path='/public' component={Public} />
-          <Route path="/login" component={Login}/>
-          <SecretRoute path='/private' component={Private} />
-
+          <Route exact path="/" component={Home}/>
+          <Route path="/contact" component={Contact}/>
         </div>
       </Router>
-    );
+    )
   }
 }
+
 export default App;
