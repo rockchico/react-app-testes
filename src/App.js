@@ -1,29 +1,46 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 
+const Home = () => (
+  <div>
+    <h2> Home </h2>
+  </div>
+);
 
-import logo from './logo.svg';
-import './App.css';
+const Airport = () => (
+  <div>
+     <ul>
+      <li>Jomo Kenyatta</li>
+      <li>Tambo</li>
+      <li>Murtala Mohammed</li>
+    </ul>
+  </div>
+);
+
+const City = () => (
+  <div>
+    <ul>
+      <li>San Francisco</li>
+      <li>Istanbul</li>
+      <li>Tokyo</li>
+    </ul>
+  </div>
+);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Link to="/sobre">Ir para a página sobre \o/</Link>
-        </header>
+      <div>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/airports">Airports</Link></li>
+          <li><Link to="/cities">Cities</Link></li>
+        </ul>
+
+        <Route path="/" component={Home}/>
+        <Route path="/airports" render={() => (<div> This is the airport route </div>)}/>
+        {/* <Route path="/airports" component={Airport}/> */}
+        <Route path="/cities" component={City}/>
       </div>
     );
   }

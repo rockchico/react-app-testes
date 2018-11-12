@@ -1,6 +1,8 @@
+// https://auth0.com/blog/react-router-4-practical-tutorial/
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import './index.css';
 import App from './App';
@@ -9,10 +11,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
                 <BrowserRouter>
-                    <Switch>
-                        <Route path="/" exact={true} component={App} />
-                        <Route path="/sobre" component={Sobre} />
-                    </Switch>
+                    <App/>
                 </BrowserRouter>
                 , document.getElementById('root'));
 
