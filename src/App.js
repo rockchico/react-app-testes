@@ -10,9 +10,9 @@ const Courses = ({ match }) => (
     </ul>
 
 
-    <Route exact path="/courses/technology" render={() => (<div> This is technology </div>)}/>
-    <Route path="/courses/business" component={() => (<div> This is business </div>)}/>
-    <Route path="/courses/economics" component={() => (<div> This is economics </div>)}/>
+    <Route exact path={`${match.path}/technology`} render={() => (<div> This is technology </div>)}/>
+    <Route path={`${match.path}/business`} component={() => (<div> This is business </div>)}/>
+    <Route path={`${match.path}/economics`} component={() => (<div> This is economics </div>)}/>
   </div>
 );
 
