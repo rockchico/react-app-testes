@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 
+const Courses = ({ match }) => (
+  <div>
+     <ul>
+        <li><Link to="/courses/technology">Technology</Link></li>
+        <li><Link to="/courses/business">Business</Link></li>
+        <li><Link to="/courses/economics">Economics</Link></li>
+    </ul>
+
+
+    <Route exact path="/courses/technology" render={() => (<div> This is technology </div>)}/>
+    <Route path="/courses/business" component={() => (<div> This is business </div>)}/>
+    <Route path="/courses/economics" component={() => (<div> This is economics </div>)}/>
+  </div>
+);
+
 const Home = () => (
   <div>
     <h2> Home </h2>
@@ -33,14 +48,14 @@ class App extends Component {
       <div>
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/airports">Airports</Link></li>
+          <li><Link to="/courses">Courses</Link></li>
           <li><Link to="/cities">Cities</Link></li>
         </ul>
 
-        <Route path="/" component={Home}/>
-        <Route path="/airports" render={() => (<div> This is the airport route </div>)}/>
-        {/* <Route path="/airports" component={Airport}/> */}
+        <Route path="/" exact component={Home}/>
+        <Route path="/courses" component={Courses}/>
         <Route path="/cities" component={City}/>
+        
       </div>
     );
   }
