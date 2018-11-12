@@ -4,9 +4,9 @@ import { Route, Link } from 'react-router-dom'
 const Courses = ({ match }) => (
   <div>
      <ul>
-        <li><Link to="/courses/technology">Technology</Link></li>
-        <li><Link to="/courses/business">Business</Link></li>
-        <li><Link to="/courses/economics">Economics</Link></li>
+        <li><Link to={`${match.url}/technology`}>Technology</Link></li>
+        <li><Link to={`${match.url}/business`}>Business</Link></li>
+        <li><Link to={`${match.url}/economics`}>Economics</Link></li>
     </ul>
 
 
