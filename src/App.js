@@ -9,10 +9,14 @@ const Courses = ({ match }) => (
         <li><Link to={`${match.url}/economics`}>Economics</Link></li>
     </ul>
 
-
+    {/* 
     <Route exact path={`${match.path}/technology`} render={() => (<div> This is technology </div>)}/>
     <Route path={`${match.path}/business`} component={() => (<div> This is business </div>)}/>
     <Route path={`${match.path}/economics`} component={() => (<div> This is economics </div>)}/>
+    */}
+  
+    <Route exact path={`${match.path}/:course`} render={({match}) => (<div> This is {match.params.course} </div>)}/>
+
   </div>
 );
 
