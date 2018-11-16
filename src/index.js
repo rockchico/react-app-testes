@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 //import App from './App';
-import App from './AppLifeCycle';
+import { App } from './AppHOC';
 
 import * as serviceWorker from './serviceWorker';
 
