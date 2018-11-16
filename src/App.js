@@ -1,52 +1,75 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
 
+class InputTeste extends React.Component {
+  
+  constructor(props) {
+    super(props);
+  }
 
-const Home = () => (
-  <div>
-    <h2>Home Page</h2>
-  </div>
-)
+  dismiss() {
+      this.props.unmountMe();
+  } 
 
-const Contact = () => (
-  <div>
-    <h2>Contact Page</h2>
-  </div>
-)
+  componentWillUnmount() {
+    console.log('passou no componentWillUnmount ');
+  }
 
-const CustomLink = ({ children, to, exact }) => (
-  <Route path={to} exact={exact} children={({ match }) => (
-    <div className={match ? 'active' : ''}>
-      {match ? '> ' : ''}
-      <Link to={to}>
-        {children}
-      </Link>
-    </div>
-  )}/>
-);
+  render(){
+      // code
+      return (
+        <input type='text'></input>
+      )
+  }
+}
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    console.log('passou no constructor')
+
+    this.state = { counter: 0, renderChild: true };
+
+  }
+
+  // chamado após a primeira renderização do componente
+  /*
+  componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). 
+  Initialization that requires DOM nodes should go here. 
+  If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+  */
+  componentDidMount() {
+    console.log('passou no componentDidMount ');
+  }
+
+  
+
+  _handleChange(e) {
+    this.setState((prevState, props) => ({ counter: prevState.counter + 1 }))
+  }
+
+  _handleChildUnmount(){
+    this.setState({renderChild: false});
+  }
+
+  // chamado após uma atualização do componente 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('passou no componentDidUpdate ');
+  }
+
   render() {
+    
+    console.log('passou no render ');
+
+    const { counter } = this.state;
+
     return (
-      <Router>
-        <div>
-            <CustomLink exact={true} to="/">
-              Home <b>Sim</b>
-            </CustomLink>
-            <CustomLink to="/contact">
-              Contact <b>Nao</b>
-            </CustomLink>
-
-          <hr/>
-
-          <Route exact path="/" component={Home}/>
-          <Route path="/contact" component={Contact}/>
-        </div>
-      </Router>
+      <div>
+        { console.log('passou no return render ') }
+        <div><button onClick={this._handleChildUnmount.bind(this)} >x</button></div>
+        {this.state.renderChild ? <InputTeste /> : null}
+        <div>{ counter }</div>
+      </div>
     )
   }
 }

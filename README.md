@@ -1,3 +1,8 @@
+
+## These are the concepts you should know in React.js (after you learn the basics)
+
+[https://medium.freecodecamp.org/these-are-the-concepts-you-should-know-in-react-js-after-you-learn-the-basics-ee1d2f4b8030]
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
