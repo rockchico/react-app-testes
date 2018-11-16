@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import './index.css';
-import App from './App';
+//import App from './App';
+import App from './App.NonExistingRoutes';
+
 import Sobre from './Sobre';
 import * as serviceWorker from './serviceWorker';
 
