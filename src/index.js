@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import './index.css';
 //import App from './App';
-import App from './App.NonExistingRoutes';
+import App from './App.SidebarRendering';
 
 import Sobre from './Sobre';
 import * as serviceWorker from './serviceWorker';
